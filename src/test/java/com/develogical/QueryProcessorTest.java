@@ -35,4 +35,9 @@ public class QueryProcessorTest {
     public void isScycloBrave() throws Exception {
         assertThat(queryProcessor.process("gunko"), not(containsString("brave")));
     }
+
+    @Test
+    public void isNameReturned() throws Exception {
+        assertThat(queryProcessor.process("c04c44b0: what is your name"), containsString("Two Bakers"));
+    }
 }
