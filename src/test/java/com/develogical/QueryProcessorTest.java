@@ -47,9 +47,9 @@ public class QueryProcessorTest {
         assertThat(queryProcessor.process("324dfsf3: what is 20 plus 30"), is("50"));
     }
 
-//    @Test
-//    public void getLargest() throws Exception {
-//        assertThat(queryProcessor.process("25296ca0: which of the following numbers is the largest: 15, 106, 932, 29"),
-//                is("932"));
-//    }
+    @Test
+    public void getLargest() throws Exception {
+        assertThat(queryProcessor.process("25296ca0: which of the following numbers is the largest: 15, 106, 932, 29"),
+                is("932"));
+    }
 }
