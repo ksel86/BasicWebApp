@@ -6,7 +6,7 @@ import java.util.stream.Stream;
 
 public class QueryProcessor {
 
-    private Pattern plus = Pattern.compile("(.*): what is (.[0-9]) plus (.[0-9])");
+    private Pattern plus = Pattern.compile("(.*): what is (.*) plus (.*)");
     private Pattern largest = Pattern.compile("(.*): which of the following numbers is the largest: (.*)");
 
     public String process(String query) {

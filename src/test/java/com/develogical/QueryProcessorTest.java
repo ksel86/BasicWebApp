@@ -44,7 +44,7 @@ public class QueryProcessorTest {
 
     @Test
     public void isPlusQuery() throws Exception {
-        assertThat(queryProcessor.process("324dfsf3: what is 20 plus 30"), is("50"));
+        assertThat(queryProcessor.process("3f15e9b0: what is 11 plus 2"), is("13"));
     }
 
     @Test
