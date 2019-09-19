@@ -7,6 +7,7 @@ import java.util.stream.Stream;
 public class QueryProcessor {
 
     private Pattern plus = Pattern.compile("(.*): what is ([0-9]*) plus ([0-9]*)");
+    private Pattern multiply = Pattern.compile("(.*): what is ([0-9]*) multiplied by ([0-9]*)");
     private Pattern largest = Pattern.compile("(.*): which of the following numbers is the largest: (.*)");
     private Pattern cubeAndSquare = Pattern.compile("(.*): which of the following numbers is both a square and a cube: (.*)");
 
@@ -14,6 +15,7 @@ public class QueryProcessor {
         Matcher plusMatcher;
         Matcher largerMatcher;
         Matcher cubeSquareMatcher;
+        Matcher multiplyMatcher;
         if (query.toLowerCase().contains("shakespeare")) {
             return "William Shakespeare (26 April 1564 - 23 April 1616) was an " +
                     "English poet, playwright, and actor, widely regarded as the greatest " +
@@ -23,6 +25,10 @@ public class QueryProcessor {
         } else if (query.toLowerCase().contains("what is your name")) {
             return "TwoBakers";
         } else if ((plusMatcher = plus.matcher(query.toLowerCase())).matches()) {
+            int a1 = Integer.parseInt(plusMatcher.group(2));
+            int a2 = Integer.parseInt(plusMatcher.group(3));
+            return Integer.toString(a1 + a2);
+        }  else if ((plusMatcher = plus.matcher(query.toLowerCase())).matches()) {
             int a1 = Integer.parseInt(plusMatcher.group(2));
             int a2 = Integer.parseInt(plusMatcher.group(3));
             return Integer.toString(a1 + a2);
@@ -41,6 +47,10 @@ public class QueryProcessor {
                     return Integer.toString(i);
                 }
             }
+        }  else if ((multiplyMatcher = multiply.matcher(query.toLowerCase())).matches()) {
+            int a1 = Integer.parseInt(multiplyMatcher.group(2));
+            int a2 = Integer.parseInt(multiplyMatcher.group(3));
+            return Integer.toString(a1 * a2);
         }
         return "";
     }
