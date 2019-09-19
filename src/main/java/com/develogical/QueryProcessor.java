@@ -9,12 +9,14 @@ public class QueryProcessor {
     private Pattern plus = Pattern.compile("(.*): what is ([0-9]*) plus ([0-9]*)");
     private Pattern multiply = Pattern.compile("(.*): what is ([0-9]*) multiplied by ([0-9]*)");
     private Pattern largest = Pattern.compile("(.*): which of the following numbers is the largest: (.*)");
+    private Pattern prime = Pattern.compile("(.*): which of the following numbers are primes: (.*)");
     private Pattern cubeAndSquare = Pattern.compile("(.*): which of the following numbers is both a square and a cube: (.*)");
 
     public String process(String query) {
         Matcher plusMatcher;
         Matcher largerMatcher;
         Matcher cubeSquareMatcher;
+        Matcher primeMatcher;
         Matcher multiplyMatcher;
         if (query.toLowerCase().contains("shakespeare")) {
             return "William Shakespeare (26 April 1564 - 23 April 1616) was an " +
@@ -51,7 +53,18 @@ public class QueryProcessor {
             int a1 = Integer.parseInt(multiplyMatcher.group(2));
             int a2 = Integer.parseInt(multiplyMatcher.group(3));
             return Integer.toString(a1 * a2);
+        } else if ((primeMatcher = prime.matcher(query.toLowerCase())).matches()) {
+            String values = primeMatcher.group(2).replace(" ","");
+            String[] valArr = values.split(",");
+            return Stream.of(valArr).map(Integer::parseInt).filter(i -> isPrime(i)).findFirst().get() +"";
         }
         return "";
+    }
+
+    private boolean isPrime(Integer i) {
+        for (int g=2; g<i; g++) {
+            if (i%g==0) return false;
+        }
+        return true;
     }
 }

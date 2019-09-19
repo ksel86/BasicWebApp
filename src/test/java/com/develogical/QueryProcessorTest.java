@@ -67,4 +67,9 @@ public class QueryProcessorTest {
         assertThat(queryProcessor.process("8c194180: what is 17 multiplied by 12"),
                 is("204"));
     }
+    @Test
+    public void primeNumbers() throws Exception {
+        assertThat(queryProcessor.process("992d4b30: which of the following numbers are primes: 867, 131"),
+                is("131"));
+    }
 }
