@@ -10,7 +10,7 @@ public class QueryProcessor {
         } else if (query.toLowerCase().contains("gunko")) {
             return "Really afraid of mentioning him in stories";
         } else if (query.toLowerCase().contains("what is your name")) {
-            return "Two Bakers";
+            return "TwoBakers";
         }
         return "";
     }
