@@ -57,9 +57,11 @@ public class QueryProcessorTest {
     @Test
     public void bothSquareAndCube() throws Exception {
         assertThat(queryProcessor.process("43174790: which of the following numbers is both a square and a cube: 2401, 515, 196, 643"),
-                is("2401"));
+                is(""));
         assertThat(queryProcessor.process("810c5ce0: which of the following numbers is both a square and a cube: 1000000, 574"),
                 is("1000000"));
+        assertThat(queryProcessor.process("89be5500: which of the following numbers is both a square and a cube: 374, 400"),
+                is(""));
     }
 
     @Test

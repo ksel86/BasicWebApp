@@ -43,8 +43,8 @@ public class QueryProcessor {
             String[] valArr = values.split(",");
             for (String s : valArr) {
                 Integer i = Integer.parseInt(s);
-                final double sqrt = Math.round(Math.sqrt(i)*100.0/100.0);
-                final double cbrt = Math.round(Math.pow(i, 1.0/3)*100.0/100.0);
+                final double sqrt = Math.round(Math.sqrt(i)*100.0)/100.0;
+                final double cbrt = Math.round(Math.pow(i, 1.0/3)*100.0)/100.0;
                 if (sqrt == Math.ceil(sqrt) && cbrt == Math.ceil(cbrt)) {
                     return Integer.toString(i);
                 }
