@@ -1,5 +1,6 @@
 package com.develogical;
 
+import org.hamcrest.Matchers;
 import org.junit.Test;
 
 import static org.hamcrest.CoreMatchers.containsString;
@@ -38,6 +39,11 @@ public class QueryProcessorTest {
 
     @Test
     public void isNameReturned() throws Exception {
-        assertThat(queryProcessor.process("c04c44b0: what is your name"), containsString("TwoBakers"));
+        assertThat(queryProcessor.process("c04c44b0: what is your name"), Matchers.is("TwoBakers"));
+    }
+
+    @Test
+    public void isPlusQuery() throws Exception {
+        assertThat(queryProcessor.process("324dfsf3:what is 20 plus 30"), is("50"));
     }
 }
