@@ -6,12 +6,14 @@ import java.util.stream.Stream;
 
 public class QueryProcessor {
 
-    private Pattern plus = Pattern.compile("(.*): what is (.*) plus (.*)");
+    private Pattern plus = Pattern.compile("(.*): what is ([0-9]*) plus ([0-9]*)");
     private Pattern largest = Pattern.compile("(.*): which of the following numbers is the largest: (.*)");
+    private Pattern cubeAndSquare = Pattern.compile("(.*): which of the following numbers is both a square and a cube: (.*)");
 
     public String process(String query) {
         Matcher plusMatcher;
         Matcher largerMatcher;
+        Matcher cubeSquareMatcher;
         if (query.toLowerCase().contains("shakespeare")) {
             return "William Shakespeare (26 April 1564 - 23 April 1616) was an " +
                     "English poet, playwright, and actor, widely regarded as the greatest " +
@@ -28,6 +30,17 @@ public class QueryProcessor {
             String values = largerMatcher.group(2).replace(" ","");
             String[] valArr = values.split(",");
             return Stream.of(valArr).map(Integer::parseInt).max(Integer::compareTo).get() +"";
+        }  else if ((cubeSquareMatcher = cubeAndSquare.matcher(query.toLowerCase())).matches()) {
+            String values = cubeSquareMatcher.group(2).replace(" ","");
+            String[] valArr = values.split(",");
+            for (String s : valArr) {
+                Integer i = Integer.parseInt(s);
+                final double sqrt = Math.round(Math.sqrt(i)*100.0/100.0);
+                final double cbrt = Math.round(Math.pow(i, 1.0/3)*100.0/100.0);
+                if (sqrt == Math.ceil(sqrt) && cbrt == Math.ceil(cbrt)) {
+                    return Integer.toString(i);
+                }
+            }
         }
         return "";
     }
